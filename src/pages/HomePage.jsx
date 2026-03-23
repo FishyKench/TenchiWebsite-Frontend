@@ -1,16 +1,13 @@
 import { useState, useEffect } from 'react'
 import GameCard from '../components/GameCard'
+import { getAllGames } from '../services/gameService'
+import { data } from 'react-router-dom'
 
 function HomePage(){
     const [games, setGames] = useState([])
 
     useEffect(() => {
-        const fakeGames = [
-            {id: 0, gameTitle: "Game One", description: "Game One Desc", status: "Released"},
-            {id: 0, gameTitle: "Game One", description: "Game One Desc", status: "Released"},
-            {id: 0, gameTitle: "Game One", description: "Game One Desc", status: "Released"}, 
-        ]
-        setGames(fakeGames)
+        getAllGames().then(data => setGames(data))
     }, [])
 
     return(
