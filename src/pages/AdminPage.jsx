@@ -11,6 +11,7 @@ function AdminPage() {
     gameTitle: '',
     description: '',
     coverImageUrl: '',
+    releaseDate: '',
     status: 'InDevelopment'
   })
   const [success, setSuccess] = useState('')
@@ -25,7 +26,7 @@ function AdminPage() {
     const updated = await getAllGames()
     setGames(updated)
     setShowForm(false)
-    setForm({ gameTitle: '', description: '', coverImageUrl: '', status: 'InDevelopment' })
+    setForm({ gameTitle: '', description: '', coverImageUrl: '', releaseDate: '', status: 'InDevelopment' })
   }
 
   async function handleUpdate(e) {
@@ -57,6 +58,7 @@ function AdminPage() {
       gameTitle: game.gameTitle,
       description: game.description,
       coverImageUrl: game.coverImageUrl,
+      releaseDate: game.releaseDate ? game.releaseDate.split('T')[0] : '',
       status: game.status
     })
   }
@@ -64,7 +66,7 @@ function AdminPage() {
   function handleCancel() {
     setEditingGame(null)
     setShowForm(false)
-    setForm({ gameTitle: '', description: '', coverImageUrl: '', status: 'InDevelopment' })
+    setForm({ gameTitle: '', description: '', coverImageUrl: '', releaseDate: '' , status: 'InDevelopment' })
   }
 
   const formFields = (
@@ -90,6 +92,12 @@ function AdminPage() {
         onChange={e => setForm({ ...form, coverImageUrl: e.target.value })}
         className="border border-gray-200 rounded-lg px-4 py-2 text-gray-900 outline-none"
       />
+      <input
+        type="date"
+        value={form.releaseDate}
+        onChange={e => setForm({ ...form, releaseDate: e.target.value })}
+        className="border border-gray-200 rounded-lg px-4 py-2 text-gray-900 outline-none"
+        />
       <select
         value={form.status}
         onChange={e => setForm({ ...form, status: e.target.value })}
