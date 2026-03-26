@@ -43,3 +43,15 @@ export async function publishGame(id, token) {
   })
   if (!response.ok) throw new Error('Failed to publish game')
 }
+
+export async function updateGame(id, gameData, token) {
+  const response = await fetch(`${BASE_URL}/game/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify({ ...gameData, id: id })
+  })
+  if (!response.ok) throw new Error('Failed to update game')
+}
