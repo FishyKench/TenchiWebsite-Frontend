@@ -18,7 +18,7 @@ function Navbar() {
         {user ? (
           <>
             <li className="text-gray-300">Welcome, {user.userName}</li>
-            <li><Link to="/admin" className="hover:text-gray-300">Admin</Link></li>
+            {user && user.role === 'Admin' && (<li><Link to="/admin" className="hover:text-gray-300">Admin</Link></li>)}
             <li onClick={handleLogout} className="cursor-pointer hover:text-gray-300">Logout</li>
           </>
         ) : (
