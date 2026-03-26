@@ -10,10 +10,13 @@ function Navbar() {
       <ul className="flex gap-6">
         <li><Link to="/" className="hover:text-gray-300">Home</Link></li>
         {user ? (
-          <li onClick={logout} className="cursor-pointer hover:text-gray-300">Logout</li>
-        ) : (
-          <li><Link to="/login" className="hover:text-gray-300">Login</Link></li>
-        )}
+  <li onClick={logout} className="cursor-pointer hover:text-gray-300">Logout</li>
+) : (
+  <>
+    <li><Link to="/login" className="hover:text-gray-300">Login</Link></li>
+    <li><Link to="/register" className="hover:text-gray-300">Register</Link></li>
+  </>
+)}
       </ul>
     </nav>
   )
