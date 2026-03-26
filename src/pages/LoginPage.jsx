@@ -11,15 +11,15 @@ function LoginPage() {
   const { setUser } = useAuth()
 
   async function handleSubmit(e) {
-    e.preventDefault()
-    try {
-      const data = await login(email, password)
-      setUser({ token: data.token })
-      navigate('/')
-    } catch (err) {
-      setError('Invalid email or password')
-    }
+  e.preventDefault()
+  try {
+    const data = await login(email, password)
+    setUser({ token: data.token, userName: data.userName })
+    navigate('/')
+  } catch (err) {
+    setError('Invalid email or password')
   }
+}
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-950">
