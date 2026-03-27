@@ -14,7 +14,7 @@ function LoginPage() {
   e.preventDefault()
   try {
     const data = await login(email, password)
-    setUser({ token: data.token, userName: data.userName, role: data.role })
+    setUser({ token: data.token, userName: data.userName, role: data.role, id: data.id })
     navigate('/')
   } catch (err) {
     setError('Invalid email or password')

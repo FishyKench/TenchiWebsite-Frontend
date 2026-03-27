@@ -98,7 +98,7 @@ function GamePage() {
                   <p className="text-gray-600 mt-1">{comment.content}</p>
                   <p className="text-gray-400 text-xs mt-2">{new Date(comment.createdAt).toLocaleDateString()}</p>
                 </div>
-                {user && user.role === 'Admin' && (
+                {user && (user.role === 'Admin' || user.id === comment.userId)&& (
                   <button
                     onClick={() => handleDeleteComment(comment.id)}
                     className="text-red-400 hover:text-red-600 text-sm"
