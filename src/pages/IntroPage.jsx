@@ -6,10 +6,10 @@ function IntroPage() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    const t1 = setTimeout(() => setStep(1), 500)
-    const t2 = setTimeout(() => setStep(2), 1800)
-    const t3 = setTimeout(() => setStep(3), 3000)
-    const t4 = setTimeout(() => setStep(4), 4200)
+    const t1 = setTimeout(() => setStep(s => Math.max(s,1)), 500)
+    const t2 = setTimeout(() => setStep(s => Math.max(s,2)), 1800)
+    const t3 = setTimeout(() => setStep(s => Math.max(s,3)), 3000)
+    const t4 = setTimeout(() => setStep(s => Math.max(s,4)), 4200)
     return () => {
       clearTimeout(t1)
       clearTimeout(t2)
@@ -17,6 +17,13 @@ function IntroPage() {
       clearTimeout(t4)
     }
   }, [])
+
+  function handleClick() {
+    setStep(s => {
+        if( s < 4) return s + 1
+        return s
+    })
+  }
 
   function handleEnter() {
     localStorage.setItem('introSeen', 'true')
@@ -35,7 +42,9 @@ function IntroPage() {
           to { opacity: 1; transform: translateY(0); }
         }
       `}</style>
-      <div className="fixed inset-0 bg-gray-950 flex flex-col items-center justify-center text-white">
+      <div
+      onClick={handleClick}
+       className="fixed inset-0 bg-gray-950 flex flex-col items-center justify-center text-white">
         <div className="text-center space-y-4">
           {step >= 1 && (
             <h1 style={fadeIn} className="text-5xl font-bold tracking-tight">
@@ -55,7 +64,7 @@ function IntroPage() {
           {step >= 4 && (
             <div style={fadeIn} className="pt-6">
               <button
-                onClick={handleEnter}
+                onClick={ e => { e.stopPropagation(); handleEnter()}}
                 className="border border-white text-white px-8 py-3 rounded-full text-sm tracking-widest uppercase hover:bg-white hover:text-gray-950 transition-all duration-300"
               >
                 Enter
