@@ -25,6 +25,14 @@ function Navbar() {
           <>
             <li><Link to="/login" className="hover:text-gray-300">Login</Link></li>
             <li><Link to="/register" className="hover:text-gray-300">Register</Link></li>
+            <li>
+            <span
+              onClick={() => { localStorage.removeItem('introSeen'); navigate('/intro') }}
+              className="cursor-pointer hover:text-gray-300"
+            >
+              Intro
+            </span>
+          </li>
           </>
         )}
       </ul>
